@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer {
+    .flex-between {
+        @apply flex justify-between items-center;
+    }
+    .flex-center {
+        @apply flex justify-center items-center;
+    }
+    .btn-rounded {
+        @apply hover:bg-gray-300 hover:border hover:rounded-full h-7 w-7 !flex justify-center items-center;
+    }
+    .rm-antd-item-style .ant-form-item {
+        @apply mb-0 pb-0
+    }
+}
