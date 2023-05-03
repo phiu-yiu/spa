@@ -19,8 +19,8 @@ export const receiptStore = proxy<Store>({
 })
 
 export const useReceiptStoreActions = () => ({
-  addDiscount: (discount) => (receiptStore.discount = discount),
+  addDiscount: (discount: number) => (receiptStore.discount = discount),
   addService: (service: Service) => receiptStore.services.push(service),
   removeService: (index: number) => receiptStore.services.splice(index, 1),
-  addPayment: (money) => (receiptStore.payment = money)
+  addPayment: (money: number) => (receiptStore.payment = money)
 })

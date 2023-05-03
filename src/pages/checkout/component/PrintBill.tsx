@@ -17,6 +17,8 @@ export const PrintBill: FC = () => {
         Print Bill
       </Button>
       <div className='hidden'>
+        {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
+        {/*// @ts-ignore*/}
         <PrintSection ref={printRef} />
       </div>
     </>
