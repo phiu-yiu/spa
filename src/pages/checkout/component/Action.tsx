@@ -11,6 +11,7 @@ import { useQueryServices } from '~/pages/checkout/hook/useService'
 import { Services } from '~/pages/checkout/type'
 import { DEFAULT_DISCOUNT, DISCOUNT_OPTS } from '~/pages/checkout/contants'
 import { PrintBill } from '~/pages/checkout/component/PrintBill'
+import { SearchCustomer } from '~/pages/checkout/component/SearchCustomer'
 
 export const Action: FC = () => {
   const { addDiscount, addService, addPayment } = useReceiptStoreActions()
@@ -61,6 +62,8 @@ export const Action: FC = () => {
   return (
     <div className='max-w-4xl min-w-[600px] rm-antd-item-style'>
       <h3 className='font-bold text-xl mb-6'>Action</h3>
+      <SearchCustomer />
+      <br />
       <Card loading={isLoading}>
         <div className='space-y-6'>
           <Form
