@@ -1,4 +1,4 @@
-import { FC, memo, useMemo } from 'react'
+import { FC, memo } from 'react'
 import { useSnapshot } from 'valtio'
 import dayjs from 'dayjs'
 
@@ -24,14 +24,17 @@ export const Information: FC = memo(() => {
   )
 })
 
+const GENDER_PREFIX = {
+  male: 'A. ',
+  female: 'C. '
+}
+
 const RenderCustomer: FC = () => {
   const customer = useSnapshot(customerStore).customer
-  const prefix = useMemo(() => (customer?.gender === 'male' ? 'A. ' : 'C. '), [customer?.gender])
 
   return (
     <div>
-      <strong>Khách hàng: </strong>
-      {customer?.gender && <span>{prefix}</span>}
+      {customer?.gender && <span>{GENDER_PREFIX[customer.gender]}</span>}
       <span>{customer?.name ?? 'Guest'}</span>
     </div>
   )

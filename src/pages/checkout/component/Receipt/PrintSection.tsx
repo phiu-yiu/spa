@@ -14,7 +14,7 @@ export const PrintSection: FC = forwardRef(({}, ref) => {
   useImperativeHandle(ref, () => receiptRef.current, [])
 
   return (
-    <div className='p-10' ref={receiptRef}>
+    <div className='my-4' ref={receiptRef}>
       <Receipt Services={Services} Footer={Footer} />
     </div>
   )
@@ -34,7 +34,7 @@ const Services: FC = () => {
 
 const Footer: FC = () => {
   return (
-    <div className='mt-10'>
+    <div className='mt-10 mb-[20px]'>
       <p className='text-center'>Xin Cảm Ơn Quý Khách</p>
       <p className='text-center'>Hẹn Gặp Lại</p>
     </div>
