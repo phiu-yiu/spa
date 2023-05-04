@@ -6,6 +6,7 @@ import { Customer } from '~/pages/customer/type'
 import { useQueryCustomers } from '~/hook/useCustomer'
 import { datetime } from '~/serivce/datetime'
 import { Dayjs } from 'dayjs'
+import { DISTRICT_FORMAT } from '~/pages/customer/contants'
 
 const columns: ColumnsType<Customer> = [
   {
@@ -26,7 +27,8 @@ const columns: ColumnsType<Customer> = [
   {
     title: 'Address',
     dataIndex: 'address',
-    width: '15%'
+    width: '15%',
+    render: (district: keyof DISTRICT_FORMAT) => <span>{DISTRICT_FORMAT[district]}</span>
   },
   {
     title: 'Gender',
@@ -34,7 +36,7 @@ const columns: ColumnsType<Customer> = [
     width: '10%'
   },
   {
-    title: 'Brith Day',
+    title: 'Date of Birth',
     dataIndex: 'date_of_birth',
     width: '10%',
     render: (date: Dayjs) => <span>{datetime.toDayMonth(date)}</span>

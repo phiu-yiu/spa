@@ -35,14 +35,22 @@ export const Create: FC = () => {
         <h3 className='font-bold text-2xl text-center mb-4'>Add User</h3>
         <Card>
           <Form form={form} onFinish={handleSubmit}>
-            <Form.Item name='name' label='Name' labelCol={SPAN_24}>
+            <Form.Item
+              name='name'
+              label='Name'
+              labelCol={SPAN_24}
+              rules={[{ required: true, message: 'Please input name' }]}
+            >
               <Input />
             </Form.Item>
             <Form.Item
               name='phone'
               label='Phone Number'
               labelCol={SPAN_24}
-              rules={[{ pattern: PHONE_NUMBER_PATTERN, message: 'Please double check your phone number' }]}
+              rules={[
+                { required: true, message: 'Please input phone-number!' },
+                { pattern: PHONE_NUMBER_PATTERN, message: 'Input is not a phone-number!' }
+              ]}
             >
               <Input />
             </Form.Item>
@@ -52,7 +60,12 @@ export const Create: FC = () => {
             <Form.Item name='gender' label='Gender' labelCol={SPAN_24} initialValue={DEFAULT_GENDER}>
               <Select defaultValue={DEFAULT_GENDER} options={GENDER_OPTIONS} />
             </Form.Item>
-            <Form.Item name='date_of_birth' label='Date Of Birth' labelCol={SPAN_24}>
+            <Form.Item
+              name='date_of_birth'
+              label='Date Of Birth'
+              labelCol={SPAN_24}
+              rules={[{ type: 'object', required: true, message: 'Please select time!' }]}
+            >
               <DatePicker />
             </Form.Item>
           </Form>
