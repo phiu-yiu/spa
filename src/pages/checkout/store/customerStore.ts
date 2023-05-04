@@ -1,5 +1,5 @@
 import { proxy } from 'valtio'
-import { Customer } from '~/type'
+import { Customer } from '~/pages/customer/type'
 
 interface Store {
   customer?: Customer
@@ -10,5 +10,5 @@ export const customerStore = proxy<Store>({
 })
 
 export const useCustomerStoreActions = () => ({
-  addCustomer: (customer: any) => (customerStore.customer = customer)
+  addCustomer: (customer?: Customer) => (customerStore.customer = customer)
 })

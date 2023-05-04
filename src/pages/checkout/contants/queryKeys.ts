@@ -7,6 +7,7 @@ export const configQueryKey = {
 export const customerQueryKey = {
   all: ['customer'] as const,
   lists: () => [...customerQueryKey.all, 'list'] as const,
+  list: (searchValue: string) => [...customerQueryKey.lists(), searchValue] as const,
   details: () => [...customerQueryKey.all, 'detail'] as const,
   detail: (id: number) => [...customerQueryKey.details(), id] as const
 }
