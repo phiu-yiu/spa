@@ -5,7 +5,8 @@ import { Customer } from '~/pages/customer/type'
 const CUSTOMER = 'customer'
 
 export const getCustomers = async () => {
-  const { data, error } = await supabase.from(CUSTOMER).select()
+  const { data, error } = await supabase.from(CUSTOMER).select().order('id', { ascending: false })
+
   if (error) throw error
   return data
 }

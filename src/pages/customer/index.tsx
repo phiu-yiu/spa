@@ -43,7 +43,7 @@ const columns: ColumnsType<Customer> = [
     title: 'Date of Birth',
     dataIndex: 'date_of_birth',
     width: '10%',
-    render: (date: Dayjs) => <span>{datetime.toDayMonth(date)}</span>
+    render: (date: Dayjs) => <span>{datetime.toDate(date)}</span>
   }
 ]
 

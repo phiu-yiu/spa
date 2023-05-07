@@ -12,6 +12,7 @@ import { Services } from '~/pages/checkout/type'
 import { DEFAULT_DISCOUNT, DISCOUNT_OPTS } from '~/pages/checkout/contants'
 import { PrintBill } from '~/pages/checkout/component/PrintBill'
 import { SearchCustomer } from '~/pages/checkout/component/SearchCustomer'
+import { transformServices } from '~/pages/checkout/services'
 
 export const Action: FC = () => {
   const { addDiscount, addService, addPayment } = useReceiptStoreActions()
@@ -22,7 +23,8 @@ export const Action: FC = () => {
   const [form] = Form.useForm()
   const service = Form.useWatch('name', form)
 
-  const transformServices = useMemo(() => services?.map((item) => ({ label: item.name, value: item.name })), [services])
+  const serviceOpt = useMemo(() => transformServices(services || []), [services])
+
   const mapServices = useMemo(
     () =>
       services &&
@@ -77,7 +79,7 @@ export const Action: FC = () => {
             <Form.Item label={<Label>Service</Label>} labelCol={SPAN_24} className='w-full'>
               <Space.Compact className='flex'>
                 <Form.Item name='name' noStyle className='w-[550px]'>
-                  <Select defaultValue={defaultValue?.name} options={transformServices} />
+                  <Select defaultValue={defaultValue?.name} options={serviceOpt} />
                 </Form.Item>
                 <Form.Item name='price' label='Pricing' labelCol={SPAN_24} noStyle>
                   <InputNumber addonAfter={VND} disabled formatter={(value) => transform2Concurrency(value)} />

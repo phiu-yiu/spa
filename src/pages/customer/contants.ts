@@ -52,6 +52,6 @@ export const DISTRICT_FORMAT = {
 }
 
 export const GENDER_COLOR = {
-  male: 'magenta',
-  female: 'blue'
+  male: 'blue',
+  female: 'magenta'
 }

@@ -2,7 +2,7 @@ import { FC, memo, useMemo } from 'react'
 import { Button, Card, Col, Form, Input, InputNumber, notification, Row, Select } from 'antd'
 
 import { Label } from '~/component/Label'
-import { ONE_HUNDRED, SPAN_24, VND_SUFIX } from '~/contants'
+import { ONE_HUNDRED, ONE_THOUSAND, SPAN_24, VND_SUFIX } from '~/contants'
 import { handleError } from '~/serivce'
 
 import { useAddService, useQueryGroupServices } from '~/pages/config/hook'
@@ -22,7 +22,8 @@ export const Create: FC = memo(() => {
   const groupSerOpt = useMemo(() => data?.map((item) => ({ label: item.name, value: item.id })), [data])
 
   const onSubmit = (data: CreateServicePayload) => {
-    addService(data)
+    const transformData = { ...data, price: data.price * ONE_THOUSAND }
+    addService(transformData)
   }
 
   return (
