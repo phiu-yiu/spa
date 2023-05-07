@@ -50,3 +50,8 @@ export const DISTRICT_FORMAT = {
   q_tan_binh: 'Quận Tân Bình',
   other: 'Tỉnh Khác'
 }
+
+export const GENDER_COLOR = {
+  male: 'magenta',
+  female: 'blue'
+}

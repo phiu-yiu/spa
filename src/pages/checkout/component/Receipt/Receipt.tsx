@@ -7,19 +7,27 @@ import { Amount } from '~/pages/checkout/component/Receipt/Amount'
 
 interface Props {
   Services: FC
-  Footer?: FC
 }
 
-export const Receipt: FC<Props> = ({ Services, Footer }) => {
+export const Receipt: FC<Props> = ({ Services }) => {
   return (
     <>
       <Information />
       <Divider className='!my-2' />
-      <ReceiptLayout title='Dịch Vụ' description='Thành Tiền' font='bold' />
+      <ReceiptLayout title='Tên Dịch Vụ' description='Giá Tiền' font='bold' />
       <Services />
       <Divider className='!my-2' />
       <Amount />
-      {Footer && <Footer />}
+      <Footer />
+    </>
+  )
+}
+
+const Footer: FC = () => {
+  return (
+    <>
+      <hr className='my-4' />
+      <p className='text-center text-lg font-bold'>XIN CẢM ƠN & HẸN GẶP LẠI</p>
     </>
   )
 }

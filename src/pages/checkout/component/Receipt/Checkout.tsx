@@ -13,7 +13,7 @@ export const Checkout: FC = () => {
   return (
     <div className='max-w-xl min-w-[500px]'>
       <h3 className='font-bold text-xl mb-6'>Preview</h3>
-      <Card className='min-h-[515px]'>
+      <Card className='min-h-[450px]'>
         <Receipt Services={Services} />
       </Card>
     </div>

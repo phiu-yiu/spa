@@ -1,12 +1,15 @@
 import { FC } from 'react'
-import { Table } from 'antd'
+import { Table, Tag } from 'antd'
 import { ColumnsType } from 'antd/es/table'
+import { Dayjs } from 'dayjs'
+
+import { datetime } from '~/serivce/datetime'
+import { capitalizeFirstLetter } from '~/serivce'
+import { useQueryCustomers } from '~/hook/useCustomer'
+
 import { Create } from '~/pages/customer/component/Create'
 import { Customer } from '~/pages/customer/type'
-import { useQueryCustomers } from '~/hook/useCustomer'
-import { datetime } from '~/serivce/datetime'
-import { Dayjs } from 'dayjs'
-import { DISTRICT_FORMAT } from '~/pages/customer/contants'
+import { DISTRICT_FORMAT, GENDER_COLOR } from '~/pages/customer/contants'
 
 const columns: ColumnsType<Customer> = [
   {
@@ -33,7 +36,8 @@ const columns: ColumnsType<Customer> = [
   {
     title: 'Gender',
     dataIndex: 'gender',
-    width: '10%'
+    width: '10%',
+    render: (gender) => <Tag color={GENDER_COLOR[gender]}>{capitalizeFirstLetter(gender)}</Tag>
   },
   {
     title: 'Date of Birth',
@@ -45,6 +49,7 @@ const columns: ColumnsType<Customer> = [
 
 const User: FC = () => {
   const { data, isLoading } = useQueryCustomers()
+  console.log(data)
 
   return (
     <div>
