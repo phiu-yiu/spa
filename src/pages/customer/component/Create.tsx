@@ -1,6 +1,6 @@
 import { FC, useCallback, useState } from 'react'
-import { Button, Card, DatePicker, Form, Input, Modal, notification, Select } from 'antd'
-import { PHONE_NUMBER_PATTERN, SPAN_24 } from '~/contants'
+import { Button, Card, Col, DatePicker, Form, Input, Modal, notification, Row, Select } from 'antd'
+import { DATE_MONTH_YEAR, PHONE_NUMBER_PATTERN, SPAN_24 } from '~/contants'
 import { DEFAULT_DISTRICT, DEFAULT_GENDER, GENDER_OPTIONS, HCM_CITY_DISTRICT_OPT } from '~/pages/customer/contants'
 import { useCreateCustomer } from '~/hook/useCustomer'
 import { handleError } from '~/serivce'
@@ -54,20 +54,28 @@ export const Create: FC = () => {
             >
               <Input />
             </Form.Item>
-            <Form.Item name='address' label='Address' labelCol={SPAN_24} initialValue={DEFAULT_DISTRICT}>
-              <Select showSearch options={HCM_CITY_DISTRICT_OPT} defaultValue={DEFAULT_DISTRICT} />
-            </Form.Item>
-            <Form.Item name='gender' label='Gender' labelCol={SPAN_24} initialValue={DEFAULT_GENDER}>
-              <Select defaultValue={DEFAULT_GENDER} options={GENDER_OPTIONS} />
-            </Form.Item>
-            <Form.Item
-              name='date_of_birth'
-              label='Date Of Birth'
-              labelCol={SPAN_24}
-              rules={[{ type: 'object', required: true, message: 'Please select time!' }]}
-            >
-              <DatePicker />
-            </Form.Item>
+            <Row gutter={12}>
+              <Col span={8}>
+                <Form.Item name='address' label='Address' labelCol={SPAN_24} initialValue={DEFAULT_DISTRICT}>
+                  <Select showSearch options={HCM_CITY_DISTRICT_OPT} defaultValue={DEFAULT_DISTRICT} />
+                </Form.Item>
+              </Col>
+              <Col span={8}>
+                <Form.Item name='gender' label='Gender' labelCol={SPAN_24} initialValue={DEFAULT_GENDER}>
+                  <Select defaultValue={DEFAULT_GENDER} options={GENDER_OPTIONS} />
+                </Form.Item>
+              </Col>
+              <Col span={8}>
+                <Form.Item
+                  name='date_of_birth'
+                  label='Date Of Birth'
+                  labelCol={SPAN_24}
+                  rules={[{ type: 'object', required: true, message: 'Please select time!' }]}
+                >
+                  <DatePicker className='w-full' format={DATE_MONTH_YEAR} showToday={false} />
+                </Form.Item>
+              </Col>
+            </Row>
           </Form>
         </Card>
       </Modal>

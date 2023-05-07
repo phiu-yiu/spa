@@ -3,11 +3,11 @@ import { Button, Card, Form, InputNumber, Select, Space } from 'antd'
 
 import useDebounce from '~/hook/useDebounce'
 import { transform2Concurrency } from '~/serivce'
-import { SPAN_24, VND } from '~/contants'
+import { ONE_HUNDRED, ONE_THOUSAND, SPAN_24, VND, VND_SUFIX } from '~/contants'
 import { Label } from '~/component/Label'
 
 import { Service, useReceiptStoreActions } from '~/pages/checkout/store/receiptStore'
-import { useQueryServices } from '~/pages/checkout/hook/useService'
+import { useQueryAllServices } from '~/pages/checkout/hook/useService'
 import { Services } from '~/pages/checkout/type'
 import { DEFAULT_DISCOUNT, DISCOUNT_OPTS } from '~/pages/checkout/contants'
 import { PrintBill } from '~/pages/checkout/component/PrintBill'
@@ -15,7 +15,7 @@ import { SearchCustomer } from '~/pages/checkout/component/SearchCustomer'
 
 export const Action: FC = () => {
   const { addDiscount, addService, addPayment } = useReceiptStoreActions()
-  const { data: services, isLoading } = useQueryServices()
+  const { data: services, isLoading } = useQueryAllServices()
   const [debounceMoney, setDebounceMoney] = useState<number>(0)
   const payment = useDebounce(debounceMoney)
 
@@ -34,7 +34,7 @@ export const Action: FC = () => {
   )
 
   useEffect(() => {
-    addPayment(payment * 1000)
+    addPayment(payment * ONE_THOUSAND)
   }, [addPayment, payment])
 
   const onSubmit = useCallback((data: Service) => addService(data), [addService])
@@ -60,7 +60,7 @@ export const Action: FC = () => {
   const defaultValue = useMemo(() => services && services?.[0], [services])
 
   return (
-    <div className='max-w-4xl min-w-[600px] rm-antd-item-style'>
+    <div className='w-[500px] rm-antd-item-style'>
       <h3 className='font-bold text-xl mb-6'>Action</h3>
       <SearchCustomer />
       <br />
@@ -85,40 +85,39 @@ export const Action: FC = () => {
               </Space.Compact>
             </Form.Item>
           </Form>
-          <div className='space-y-2'>
-            <Label>Action</Label>
-            <Space className='flex'>
-              <Button type='primary' onClick={onNormalSubmit}>
-                Add
-              </Button>
-              <Button type='primary' onClick={onFreeSubmit}>
+          <div className='space-y-2 '>
+            <Space className='flex justify-end'>
+              <Button className='px-8' type='primary' ghost onClick={onFreeSubmit}>
                 Free
+              </Button>
+              <Button className='px-8' type='primary' onClick={onNormalSubmit}>
+                Add
               </Button>
             </Space>
           </div>
-          <div className='space-y-2'>
-            <Label>Payment</Label>
-            <InputNumber
-              min={0}
-              onChange={handlePayment}
-              className='!w-full'
-              addonAfter={`000 ${VND}`}
-              step={1000}
-              formatter={(value) => transform2Concurrency(value)}
-            />
-          </div>
-          <div className='space-y-2'>
-            <Label>Discount</Label>
-            <div className='flex space-x-4'>
+          <div className='flex-between space-x-8'>
+            <div className='w-1/2'>
+              <Label>Discount</Label>
               <Select
                 defaultValue={DEFAULT_DISCOUNT}
                 options={DISCOUNT_OPTS}
                 onSelect={handleDiscount}
-                className='w-32'
+                className='w-full'
               />
-              <PrintBill />
+            </div>
+            <div className='w-1/2'>
+              <Label>Payment</Label>
+              <InputNumber
+                min={0}
+                onChange={handlePayment}
+                className='!w-full'
+                addonAfter={VND_SUFIX}
+                step={ONE_HUNDRED}
+                formatter={(value) => transform2Concurrency(value)}
+              />
             </div>
           </div>
+          <PrintBill />
         </div>
       </Card>
     </div>

@@ -15,7 +15,7 @@ export const PrintSection: FC = forwardRef(({}, ref) => {
 
   return (
     <div className='my-4' ref={receiptRef}>
-      <Receipt Services={Services} Footer={Footer} />
+      <Receipt Services={Services} />
     </div>
   )
 })
@@ -29,14 +29,5 @@ const Services: FC = () => {
         <ReceiptLayout key={nanoid(2)} title={service.name} description={currency(service.price)} />
       ))}
     </>
-  )
-}
-
-const Footer: FC = () => {
-  return (
-    <div className='mt-10 mb-[20px]'>
-      <p className='text-center'>Xin Cảm Ơn Quý Khách</p>
-      <p className='text-center'>Hẹn Gặp Lại</p>
-    </div>
   )
 }

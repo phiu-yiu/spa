@@ -13,7 +13,7 @@ export const PrintBill: FC = () => {
 
   return (
     <>
-      <Button type='primary' onClick={handlePrint}>
+      <Button className='w-full' size='large' type='primary' onClick={handlePrint}>
         Print Bill
       </Button>
       <div className='hidden'>

@@ -1,17 +1,19 @@
 import { Routes, Route, useNavigate, Outlet } from 'react-router-dom'
 
-import { FC } from 'react'
+import { FC, lazy, Suspense } from 'react'
 import { Layout } from 'antd'
 import dayjs from 'dayjs'
 
 import { SpaIcon } from '~/component/SpaIcon'
 import { SideMenu } from '~/component/SideBar'
 import { Breadcrumbs } from '~/component/Breadcrumbs'
-import Home from '~/pages/home'
-import CheckoutPage from '~/pages/checkout'
-import Account from '~/pages/account'
-import Customer from '~/pages/customer'
-import Setting from '~/pages/setting'
+import { Loading } from '~/component/Loading'
+
+const Home = lazy(() => import('~/pages/home'))
+const CheckoutPage = lazy(() => import('~/pages/checkout'))
+const Account = lazy(() => import('~/pages/account'))
+const Customer = lazy(() => import('~/pages/customer'))
+const Config = lazy(() => import('~/pages/config'))
 
 const { Header, Sider, Footer, Content } = Layout
 
@@ -20,11 +22,46 @@ function App() {
     <>
       <Routes>
         <Route path='/' element={<RouterLayout />}>
-          <Route index element={<Home />} />
-          <Route path='/checkout' element={<CheckoutPage />} />
-          <Route path='/accounting' element={<Account />} />
-          <Route path='/customer' element={<Customer />} />
-          <Route path='/setting' element={<Setting />} />
+          <Route
+            index
+            element={
+              <Suspense fallback={<Loading />}>
+                <Home />
+              </Suspense>
+            }
+          />
+          <Route
+            path='/checkout'
+            element={
+              <Suspense fallback={<Loading />}>
+                <CheckoutPage />
+              </Suspense>
+            }
+          />
+          <Route
+            path='/accounting'
+            element={
+              <Suspense fallback={<Loading />}>
+                <Account />
+              </Suspense>
+            }
+          />
+          <Route
+            path='/customer'
+            element={
+              <Suspense fallback={<Loading />}>
+                <Customer />
+              </Suspense>
+            }
+          />
+          <Route
+            path='/config'
+            element={
+              <Suspense fallback={<Loading />}>
+                <Config />
+              </Suspense>
+            }
+          />
         </Route>
       </Routes>
     </>
@@ -32,6 +69,8 @@ function App() {
 }
 
 export default App
+
+const LOGO_HEIGHT = 120
 
 const RouterLayout: FC = () => {
   const navigate = useNavigate()
@@ -44,11 +83,11 @@ const RouterLayout: FC = () => {
   return (
     <Layout>
       <Sider className='min-h-screen' theme='light'>
-        <button onClick={refreshPage} className='p-2 flex-center h-[80px]'>
+        <button onClick={refreshPage} className={`p-2 flex-center h-[${LOGO_HEIGHT}px] border-r border-gray-100`}>
           <SpaIcon />
         </button>
         <Content>
-          <SideMenu />
+          <SideMenu height={`h-[calc(100vh-${LOGO_HEIGHT}px)]`} />
         </Content>
       </Sider>
       <Layout>

@@ -1,11 +1,5 @@
 import { FC } from 'react'
-import S from './index.module.css'
 
 export const Welcome: FC = () => {
-  return (
-    <div className={S.content}>
-      <h2>Welcome</h2>
-      <h2>Welcome</h2>
-    </div>
-  )
+  return <h1 className='text-[200px] text-orange-300'>Welcome!</h1>
 }
