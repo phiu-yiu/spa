@@ -20,7 +20,7 @@ const items: TabsProps['items'] = [
 const Setting: FC = () => {
   return (
     <>
-      <Tabs defaultActiveKey='2' items={items} animated={{ inkBar: true, tabPane: false }} type='card' />
+      <Tabs defaultActiveKey='1' items={items} animated={{ inkBar: true, tabPane: false }} type='card' />
     </>
   )
 }

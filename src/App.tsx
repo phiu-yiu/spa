@@ -70,7 +70,7 @@ function App() {
 
 export default App
 
-const LOGO_HEIGHT = 120
+const LOGO_HEIGHT = 150
 
 const RouterLayout: FC = () => {
   const navigate = useNavigate()
@@ -83,11 +83,14 @@ const RouterLayout: FC = () => {
   return (
     <Layout>
       <Sider className='min-h-screen' theme='light'>
-        <button onClick={refreshPage} className={`p-2 flex-center h-[${LOGO_HEIGHT}px] border-r border-gray-100`}>
+        <button
+          onClick={refreshPage}
+          className={`p-2 flex-center h-[${LOGO_HEIGHT}px] border-r border-b border-gray-100 pb-4`}
+        >
           <SpaIcon />
         </button>
         <Content>
-          <SideMenu height={`h-[calc(100vh-${LOGO_HEIGHT}px)]`} />
+          <SideMenu className={`h-[calc(100vh-${LOGO_HEIGHT}px)]`} />
         </Content>
       </Sider>
       <Layout>

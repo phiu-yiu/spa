@@ -32,14 +32,16 @@ const MenuItem = [
 ]
 
 interface Props {
-  height?: string
+  className?: string
 }
 
-export const SideMenu: FC<Props> = ({ height }) => {
+export const SideMenu: FC<Props> = ({ className }) => {
   const [current, setCurrent] = useState('/')
 
   const onClick: MenuProps['onClick'] = (e) => {
     setCurrent(e.key)
   }
-  return <Menu className={height} onClick={onClick} selectedKeys={[current]} items={MenuItem} mode='inline' />
+  return (
+    <Menu className={`pt-4 ${className}`} onClick={onClick} selectedKeys={[current]} items={MenuItem} mode='inline' />
+  )
 }

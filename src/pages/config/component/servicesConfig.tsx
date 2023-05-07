@@ -5,6 +5,7 @@ import { ColumnsType } from 'antd/es/table'
 import { useQueryServices } from '~/pages/checkout/hook/useService'
 import { Create } from '~/pages/config/component/Create'
 import { Service } from '~/pages/config/contants'
+import { currency } from '~/serivce'
 
 const ServiceColumn: ColumnsType<Service> = [
   {
@@ -17,7 +18,8 @@ const ServiceColumn: ColumnsType<Service> = [
   },
   {
     title: 'Price',
-    dataIndex: 'price'
+    dataIndex: 'price',
+    render: (price) => <span>{currency(price)}</span>
   },
   {
     title: 'Group',
@@ -28,7 +30,6 @@ const ServiceColumn: ColumnsType<Service> = [
 
 export const ServicesConfig: FC = () => {
   const { data, isLoading } = useQueryServices()
-  console.log(data)
 
   return (
     <div className='space-y-6'>
