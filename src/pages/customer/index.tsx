@@ -49,6 +49,7 @@ const columns: ColumnsType<Customer> = [
 
 const User: FC = () => {
   const { data, isLoading } = useQueryCustomers()
+  console.log(data)
 
   return (
     <div>
